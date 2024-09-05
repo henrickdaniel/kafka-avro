@@ -17,11 +17,11 @@ public class Consumer {
 
   @KafkaListener(topics = "sale", containerFactory = "registeredListenerContainerFactory")
   public void registeredConsume(ConsumerRecord<String, Sale> record) {
-    log.info(String.format("Consumed message with status -> %s", record.value().getStatus()));
+    log.info(String.format("Consumed message >>REGISTRED<<< with status -> %s", record.value().getStatus()));
   }
 
   @KafkaListener(topics = "sale", containerFactory = "paymentDoneListenerContainerFactory")
   public void registeredconsume(ConsumerRecord<String, Sale> record) {
-    log.info(String.format("Consumed message with status -> %s", record.value().getStatus()));
+    log.info(String.format("Consumed message >>PAYMENT_DONE<<< with status -> %s", record.value().getStatus()));
   }
 }
