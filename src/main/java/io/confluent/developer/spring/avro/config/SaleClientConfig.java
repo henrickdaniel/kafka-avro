@@ -42,18 +42,4 @@ public class SaleClientConfig {
         });
         return factory;
     }
-
-    @Bean
-    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<Object, Sale>> paymentDoneListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<Object, Sale> factory =
-                new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(consumerFactory);
-        factory.setRecordFilterStrategy(record -> {
-            if(record.value().getStatus().equals(Status.PAYMENT_DONE)){
-                return false;
-            }
-            return true;
-        });
-        return factory;
-    }
 }
