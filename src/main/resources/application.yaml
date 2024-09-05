@@ -1,5 +1,5 @@
 topic:
-  name: users
+  name: sale
   partitions-num: 3
   replication-factor: 1
 server:
@@ -10,6 +10,7 @@ spring:
       - localhost:9092
     properties:
       schema.registry.url: http://localhost:8081
+      value.deserializer.specific.avro.reader: true
     consumer:
       group-id: group_id
       auto-offset-reset: latest
@@ -17,6 +18,9 @@ spring:
       value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
       properties:
         interceptor.classes: io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor
+        specific.avro.reader: true
+
+
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
@@ -27,3 +31,6 @@ spring:
 logging:
   level:
     root: info
+
+sale:
+  url: http://localhost:8080

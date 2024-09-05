@@ -1,0 +1,15 @@
+CREATE STREAM sale_stream (
+    saleId STRING,
+    costumer STRUCT<
+        name STRING,
+        dateOfBirth DATE
+    >,
+    status STRING,
+    logs ARRAY<STRUCT<
+        dateTimeUtc BIGINT,
+        status STRING
+    >>
+) WITH (
+    KAFKA_TOPIC = 'sale',
+    VALUE_FORMAT = 'AVRO'
+);

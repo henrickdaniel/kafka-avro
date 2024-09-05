@@ -1,0 +1,62 @@
+{
+  "type": "record",
+  "name": "Sale",
+  "namespace": "br.com.henrick.avro",
+  "fields": [
+    {
+      "name": "saleId",
+      "type": "string"
+    },
+    {
+      "name": "costumer",
+      "type": {
+        "name": "Costumer",
+        "type": "record",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "dateOfBirth",
+            "type": {
+              "type": "int",
+              "logicalType": "date"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "status",
+      "type": {
+        "type": "enum",
+        "name": "Status",
+        "symbols": ["REGISTERED", "PAYMENT_DONE", "CARRIER_PENDANT", "CARRYING", "DELIVERED"]
+      }
+    },
+    {
+      "name": "logs",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "Log",
+          "fields": [
+            {
+              "name": "dateTimeUtc",
+              "type": {
+                "type": "long",
+                "logicalType": "local-timestamp-millis"
+              }
+            },
+            {
+              "name": "status",
+              "type": "Status"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

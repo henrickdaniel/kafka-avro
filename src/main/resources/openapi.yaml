@@ -1,0 +1,42 @@
+openapi: 3.0.1
+info:
+  title: ""
+  description: apt
+  version: 1.0.0
+servers:
+  - url: http://localhost/sale
+tags:
+  - name: sale
+    description: api to record sales
+paths:
+  /v1/publish:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sale'
+
+      tags:
+        - sale
+      summary: Sale
+      operationId: register sale
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sale'
+
+components:
+  schemas:
+    Sale:
+      type: object
+      properties:
+        costumerId:
+          type: string
+        saleId:
+          type: string
+        status:
+          type: string
