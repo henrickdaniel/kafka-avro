@@ -112,7 +112,7 @@
                         </goals>
                         <configuration>
                             <enableDecimalLogicalType>true</enableDecimalLogicalType>
-                            <sourceDirectory>src/main/avro</sourceDirectory>
+                            <sourceDirectory>src/main/resources/avro</sourceDirectory>
                             <outputDirectory>${project.build.directory}/generated-sources</outputDirectory>
                             <stringType>String</stringType>
                         </configuration>

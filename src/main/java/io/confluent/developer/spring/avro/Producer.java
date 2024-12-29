@@ -1,15 +1,14 @@
 package io.confluent.developer.spring.avro;
 
 import br.com.henrick.avro.Sale;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import lombok.extern.apachecommons.CommonsLog;
-
 @Service
-@CommonsLog(topic = "Producer Logger")
+@Slf4j
 public class Producer {
 
   @Value("${topic.name}")
@@ -24,6 +23,6 @@ public class Producer {
 
   public void sendMessage(Sale sale) {
     this.kafkaTemplate.send(this.TOPIC, sale.getSaleId(), sale);
-    log.info(String.format("Produced sale -> %s", sale));
+    log.info("Produced sale -> {}", sale);
   }
 }

@@ -1,10 +1,16 @@
 package io.confluent.developer.spring.avro;
 
+import br.com.henrick.avro.Costumer;
+import br.com.henrick.avro.Log;
 import br.com.henrick.avro.Sale;
+import br.com.henrick.avro.Status;
 import io.confluent.developer.spring.avro.domain.SaleRequest;
 import io.confluent.developer.spring.avro.service.ConsumerService;
+import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
 
 @RestController
 @RequestMapping(value = "/sale")
@@ -28,15 +34,19 @@ public class KafkaController {
 
     this.producer.sendMessage(
             Sale.newBuilder()
-                    /**TODO FIX THIS USING MAPSTRUCT*/
-                    /**
-                     * 1 - Update request object
-                     * 2 - Use mapstruc to transver data
-                     * ****/
-//                    .setCostumerId(saleRequest.getCostumerId())
-//                    .setStatus(saleRequest.getStatus())
-                    .setSaleId(saleRequest.getSaleId()).build()
-    );
+                    .setSaleId(saleRequest.getSaleId())
+                    .setCostumer(Costumer.newBuilder()
+                            .setName(saleRequest.getCostumer().getName())
+                            .setDateOfBirth(saleRequest.getCostumer().getBirthDate())
+                            .build())
+                    .setStatus(Status.valueOf(saleRequest.getStatus()))
+                    .setLogs(Arrays.asList(
+                            Log.newBuilder()
+                                    .setStatus(Status.valueOf(saleRequest.getStatus()))
+                                    .setDateTimeUtc(LocalDateTime.now())
+                                    .build())
+                    )
+                    .build());
   }
 
   @PostMapping(value = "/mock")

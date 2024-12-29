@@ -6,7 +6,7 @@ import lombok.Data;
 public class SaleRequest {
 
     private String saleId;
-    private String costumerId;
+    private Costumer costumer;
     private String status;
 
 }
