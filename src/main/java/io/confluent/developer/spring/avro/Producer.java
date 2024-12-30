@@ -23,6 +23,6 @@ public class Producer {
 
   public void sendMessage(Sale sale) {
     this.kafkaTemplate.send(this.TOPIC, sale.getSaleId(), sale);
-    log.info("Produced sale -> {}", sale);
+    log.info("Topic -> {} Produced sale -> {} ", TOPIC, sale);
   }
 }
