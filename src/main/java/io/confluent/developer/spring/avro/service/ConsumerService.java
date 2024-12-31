@@ -1,7 +1,5 @@
 package io.confluent.developer.spring.avro.service;
 
-
-import br.com.henrick.SaleApi;
 import br.com.henrick.avro.Costumer;
 import br.com.henrick.avro.Sale;
 import br.com.henrick.avro.Status;
@@ -9,7 +7,6 @@ import br.com.henrick.avro.Log;
 import com.github.javafaker.Faker;
 import io.confluent.developer.spring.avro.Producer;
 import io.confluent.developer.spring.avro.domain.StatusEnum;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +17,6 @@ import java.util.Random;
 
 @Service
 public class ConsumerService {
-
-    @Autowired
-    private SaleApi saleApi;
 
     @Autowired
     private Producer producer;

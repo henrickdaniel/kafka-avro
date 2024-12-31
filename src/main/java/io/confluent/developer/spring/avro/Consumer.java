@@ -1,19 +1,15 @@
 package io.confluent.developer.spring.avro;
 
 import br.com.henrick.avro.Sale;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
-import lombok.extern.apachecommons.CommonsLog;
-
 @Service
-@CommonsLog(topic = "Consumer Logger")
+@Slf4j
 public class Consumer {
-
-  @Value("${topic.name}")
-  private String topicName;
 
   @KafkaListener(topics = "sale", containerFactory = "registeredListenerContainerFactory")
   public void registeredConsume(ConsumerRecord<String, Sale> record) {

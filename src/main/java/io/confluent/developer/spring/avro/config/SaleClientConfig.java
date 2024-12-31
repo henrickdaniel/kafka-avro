@@ -1,7 +1,5 @@
 package io.confluent.developer.spring.avro.config;
 
-import br.com.ApiClient;
-import br.com.henrick.SaleApi;
 import br.com.henrick.avro.Sale;
 import br.com.henrick.avro.Status;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,18 +14,8 @@ import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 @Configuration
 public class SaleClientConfig {
 
-    @Value("${sale.url}")
-    private String saleUrl;
-
     @Autowired
     private ConsumerFactory consumerFactory;
-
-    @Bean
-    public SaleApi getSale(){
-        ApiClient apiClient = new ApiClient();
-        apiClient.setBasePath(saleUrl);
-        return new SaleApi(apiClient);
-    }
 
     @Bean
     public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<Object, Sale>> registeredListenerContainerFactory() {
