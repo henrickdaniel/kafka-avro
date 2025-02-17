@@ -1,11 +1,12 @@
-package io.confluent.developer.spring.avro;
+package io.confluent.developer.spring.avro.controller;
 
 import br.com.henrick.avro.Costumer;
 import br.com.henrick.avro.Log;
 import br.com.henrick.avro.Sale;
 import br.com.henrick.avro.Status;
+import io.confluent.developer.spring.avro.Producer;
 import io.confluent.developer.spring.avro.domain.SaleRequest;
-import io.confluent.developer.spring.avro.service.ConsumerService;
+import io.confluent.developer.spring.avro.kafka.ProducerService;
 import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class KafkaController {
   }
 
   @Autowired
-  private ConsumerService consumerService;
+  private ProducerService producerService;
 
 
   @PostMapping(value = "/publish")
@@ -51,6 +52,6 @@ public class KafkaController {
 
   @PostMapping(value = "/mock")
   public void sendMock() throws InterruptedException {
-    consumerService.sendMessages();
+    producerService.sendMessages();
   }
 }

@@ -1,4 +1,4 @@
-package io.confluent.developer.spring.avro.service;
+package io.confluent.developer.spring.avro.kafka;
 
 import br.com.henrick.avro.Costumer;
 import br.com.henrick.avro.Sale;
@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 @Service
-public class ConsumerService {
+public class ProducerService {
 
     @Autowired
     private Producer producer;

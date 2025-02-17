@@ -19,6 +19,8 @@ spring:
       properties:
         interceptor.classes: io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor
         specific.avro.reader: true
+    listener:
+      ack-mode: MANUAL
 
 
     producer:
